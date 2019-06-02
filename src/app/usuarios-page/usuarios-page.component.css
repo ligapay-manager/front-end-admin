@@ -10,3 +10,10 @@ table {
   text-align: center;
 }
   
+.filtros {
+  padding: 30px;
+}
+
+mat-form-field {
+  margin: 20px;
+}

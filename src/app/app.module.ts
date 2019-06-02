@@ -66,7 +66,10 @@ import {
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserAnimationsModule
+    MatGridListModule,
+    MatSortModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
