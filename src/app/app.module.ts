@@ -49,13 +49,15 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { UsuarioPageComponent } from './usuario-page/usuario-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     UsuariosPageComponent,
-    MenuComponent
+    MenuComponent,
+    UsuarioPageComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,7 @@ import {
     MatInputModule,
     MatGridListModule,
     MatSortModule,
+    MatIconModule,
     BrowserAnimationsModule,
     MatPaginatorModule
   ],
