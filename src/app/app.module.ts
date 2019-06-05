@@ -10,6 +10,7 @@ import {RouterModule} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { UsuariosPageComponent } from './usuarios-page/usuarios-page.component';
+import { UsuariosService } from './usuarios-page/usuarios.service'
 import { MenuComponent } from './menu/menu.component';
 
 import {
@@ -74,7 +75,9 @@ import { UsuarioPageComponent } from './usuario-page/usuario-page.component';
     BrowserAnimationsModule,
     MatPaginatorModule
   ],
-  providers: [],
+  providers: [
+    UsuariosService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
