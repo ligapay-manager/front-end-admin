@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './login-page/login-page.component';
 
 import {ROUTES} from './app.routes';
 import {RouterModule} from '@angular/router';
@@ -12,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { UsuariosPageComponent } from './usuarios-page/usuarios-page.component';
 import { UsuariosService } from './usuarios-page/usuarios.service'
 import { MenuComponent } from './menu/menu.component';
+import {HttpClientModule} from '@angular/common/http';
 
 import {
   MatAutocompleteModule,
@@ -51,14 +51,15 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import { UsuarioPageComponent } from './usuario-page/usuario-page.component';
+import { LoginComponent } from './security/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent,
     UsuariosPageComponent,
     MenuComponent,
-    UsuarioPageComponent
+    UsuarioPageComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +74,8 @@ import { UsuarioPageComponent } from './usuario-page/usuario-page.component';
     MatSortModule,
     MatIconModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    HttpClientModule
   ],
   providers: [
     UsuariosService
