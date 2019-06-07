@@ -1,5 +1,6 @@
 import { Usuario } from './usuario.model';
 import { LIGAPAY_API } from '../app.api';
+import { LoginService } from '../security/login/login.service'
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,7 +12,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class UsuariosService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private loginService: LoginService) { }
 
     httpOptions = {
         headers: new HttpHeaders({
@@ -23,15 +24,12 @@ export class UsuariosService {
 
     listarUsuarios(): Usuario[] {
 
-        this.http.post('http://ligapay.tk/', {
+        /* console.log("LOGIN SERVICE: " + this.loginService.getToken()); */
+
+        this.http.post(LIGAPAY_API.ligapay_backend, {
             query: `mutation ($email: String!, $password: String!) {
             login(email: $email, password: $password){
               token
-              user{
-                wallet{
-                  amount
-                }
-              }
             }
           }`,
             variables: {
