@@ -1,0 +1,29 @@
+.tp-form {
+  max-width: 450px;  
+}
+
+.tp-full-width {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+.content {
+  padding: 30px;
+  margin-left: 400px;
+  margin-right: 400px;
+}
+
+.titulo {
+  text-align: center;
+}
+
+.filtros {
+  padding: 30px;
+}
+
+mat-form-field {
+  margin: 20px;
+}

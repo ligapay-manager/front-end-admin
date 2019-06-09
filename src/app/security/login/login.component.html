@@ -1,3 +1,26 @@
-<p>
-  login works!
-</p>
+<div class="content">
+  <div class="mat-elevation-z8">
+    <div class="titulo">
+        <h1>LigaPay Admin</h1>
+    </div>    
+
+    <form class = "tp-form">
+      <mat-form-field class = "tp-full-width">
+        <input matInput placeholder = "Email" [formControl] = "emailFormControl">
+        <mat-error *ngIf = "emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Informe um email válido
+        </mat-error>
+        <mat-error *ngIf = "emailFormControl.hasError('required')">
+            Email é <strong>necessário</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class = "tp-full-width">
+        <input type="password" matInput placeholder = "Senha" [formControl] = "senhaFormControl">
+        <mat-error *ngIf = "senhaFormControl.hasError('required')">
+          Senha é <strong>necessária</strong>
+        </mat-error>
+      </mat-form-field>
+      
+    </form>
+  </div>
+</div>

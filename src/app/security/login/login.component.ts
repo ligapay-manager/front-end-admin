@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from "@angular/forms";
+import {Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
 import {Router} from '@angular/router'
 
 @Component({
@@ -8,10 +11,19 @@ import {Router} from '@angular/router'
 })
 export class LoginComponent implements OnInit {
 
+   emailFormControl = new FormControl('', [
+      Validators.required,
+      Validators.email,
+  ]);
+
+  senhaFormControl = new FormControl('', [
+    Validators.required
+]);
+
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.router.navigate(['./usuarios']);
+    //this.router.navigate(['./usuarios']);
   }
 
 }

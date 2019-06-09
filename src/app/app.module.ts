@@ -50,6 +50,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UsuarioPageComponent } from './usuario-page/usuario-page.component';
 import { LoginComponent } from './security/login/login.component';
 
@@ -73,9 +74,12 @@ import { LoginComponent } from './security/login/login.component';
     MatGridListModule,
     MatSortModule,
     MatIconModule,
+    MatInputModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     UsuariosService
