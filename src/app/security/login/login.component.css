@@ -1,29 +1,32 @@
-.tp-form {
-  max-width: 450px;  
+:host {
+  display: flex;
+  justify-content: center;
+  margin: 100px 0px;
 }
 
-.tp-full-width {
+.mat-form-field {
   width: 100%;
+  min-width: 300px;
 }
 
-table {
-  width: 100%;
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
 }
 
-.content {
-  padding: 30px;
-  margin-left: 400px;
-  margin-right: 400px;
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .titulo {
   text-align: center;
-}
-
-.filtros {
-  padding: 30px;
-}
-
-mat-form-field {
-  margin: 20px;
 }

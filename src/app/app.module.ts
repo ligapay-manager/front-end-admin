@@ -73,6 +73,7 @@ import { LoginComponent } from './security/login/login.component';
     MatInputModule,
     MatGridListModule,
     MatSortModule,
+    MatCardModule,
     MatIconModule,
     MatInputModule,
     BrowserAnimationsModule,

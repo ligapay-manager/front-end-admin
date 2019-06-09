@@ -1,9 +1,8 @@
-<div class="content">
-  <div class="mat-elevation-z8">
-    <div class="titulo">
-        <h1>LigaPay Admin</h1>
-    </div>    
+<mat-card>
 
+  <mat-card-title>LigaPay Admin</mat-card-title>
+
+  <mat-card-content>
     <form class = "tp-form">
       <mat-form-field class = "tp-full-width">
         <input matInput placeholder = "Email" [formControl] = "emailFormControl">
@@ -20,7 +19,9 @@
           Senha é <strong>necessária</strong>
         </mat-error>
       </mat-form-field>
-      
+      <div class="button">
+        <button type="submit" mat-button>Login</button>
+      </div>
     </form>
-  </div>
-</div>
+  </mat-card-content>
+</mat-card>
