@@ -1,7 +1,7 @@
 import { LIGAPAY_API } from '../../app.api';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -9,6 +9,9 @@ import { HttpHeaders } from '@angular/common/http';
     providedIn: 'root'
 })
 export class LoginService {
+
+    tokenUsuarioLogado: string;
+    stringTeste: string = "aaa";
 
     constructor(private http: HttpClient) { }
 
@@ -18,9 +21,12 @@ export class LoginService {
         })
     };
 
-   /*  getToken(): Observable<>{
+    isLogged(): boolean {
+        return this.tokenUsuarioLogado != undefined;
+    }
 
-         this.http.post(LIGAPAY_API.ligapay_backend, {
+    login(email: string, senha: string): Observable<any>{
+        return this.http.post(LIGAPAY_API.ligapay_backend, {
             query: 
             `mutation ($email: String!, $password: String!) {
                 login(email: $email, password: $password){
@@ -28,11 +34,15 @@ export class LoginService {
                 }
             }`,
             variables: {
-                email: "serra.santos.s@gmail.com",
-                password: "A151102!"
+                email: 'serra.santos.s@gmail.com',
+                password: 'A151102!'
             }
         },
             this.httpOptions
-        );
-    } */
+        ).pipe(
+            tap(res => {
+                this.tokenUsuarioLogado = res['data']['login']['token'];
+            }));
+    }
+
 }

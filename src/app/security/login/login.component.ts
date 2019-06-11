@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 import {Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
-import {Router} from '@angular/router'
+import {Router} from '@angular/router';
+import {LoginService} from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,19 +12,23 @@ import {Router} from '@angular/router'
 })
 export class LoginComponent implements OnInit {
 
-   emailFormControl = new FormControl('', [
-      Validators.required,
-      Validators.email,
-  ]);
+  formdata;
 
-  senhaFormControl = new FormControl('', [
-    Validators.required
-]);
-
-  constructor(private router: Router) { }
+  constructor(private router: Router, private loginService: LoginService){}
 
   ngOnInit() {
+    this.formdata = new FormGroup({
+      email: new FormControl('', [Validators.required,Validators.email]),
+      senha: new FormControl('', [Validators.required])
+   });
     //this.router.navigate(['./usuarios']);
+  }
+
+  login(){
+    this.loginService.login(this.formdata.value.email, 
+                            this.formdata.value.senha)
+                            .subscribe(data => console.log(data['data']['login']['token']));
+                               
   }
 
 }

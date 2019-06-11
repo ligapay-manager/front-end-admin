@@ -3,19 +3,19 @@
   <mat-card-title>LigaPay Admin</mat-card-title>
 
   <mat-card-content>
-    <form class = "tp-form">
+    <form class="tp-form" [formGroup]="formdata" (ngSubmit) = "login(formdata.value)">
       <mat-form-field class = "tp-full-width">
-        <input matInput placeholder = "Email" [formControl] = "emailFormControl">
-        <mat-error *ngIf = "emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        <input type="email" matInput placeholder="Email" formControlName="email">
+        <mat-error *ngIf = "formdata.controls['email'].errors?.email && !formdata.controls['email'].errors?.required">
             Informe um email válido
         </mat-error>
-        <mat-error *ngIf = "emailFormControl.hasError('required')">
+        <mat-error *ngIf = "formdata.controls['email'].errors?.required">
             Email é <strong>necessário</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field class = "tp-full-width">
-        <input type="password" matInput placeholder = "Senha" [formControl] = "senhaFormControl">
-        <mat-error *ngIf = "senhaFormControl.hasError('required')">
+        <input type="password" matInput placeholder="Senha" formControlName="senha">
+        <mat-error *ngIf = "formdata.controls['senha'].errors?.required">
           Senha é <strong>necessária</strong>
         </mat-error>
       </mat-form-field>

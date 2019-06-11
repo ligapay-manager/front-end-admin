@@ -9,11 +9,11 @@ import { UsuariosService } from './usuarios.service';
 })
 export class UsuariosPageComponent implements OnInit {   
 
-    displayedColumns: string[] = ['nome', 'email', 'nomeTime', 'montanteCarteira', 'pontuacao', 'acoes'];
-    
-    dataSource: Usuario[];
+  displayedColumns: string[] = ['nome', 'email', 'nomeTime', 'montanteCarteira', 'pontuacao', 'acoes'];
+  
+  dataSource: Usuario[];
 
-  constructor(private usuariosService: UsuariosService) { }
+  constructor(private usuariosService: UsuariosService) {}
 
   ngOnInit() {
     this.dataSource = this.usuariosService.listarUsuarios();

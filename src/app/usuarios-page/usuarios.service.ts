@@ -14,57 +14,38 @@ export class UsuariosService {
 
     constructor(private http: HttpClient, private loginService: LoginService) { }
 
-    httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        })
-    };
-
     userToken = "";
 
     listarUsuarios(): Usuario[] {
 
-        /* console.log("LOGIN SERVICE: " + this.loginService.getToken()); */
+        if(this.loginService.isLogged()){
 
-        this.http.post(LIGAPAY_API.ligapay_backend, {
-            query: `mutation ($email: String!, $password: String!) {
-            login(email: $email, password: $password){
-              token
-            }
-          }`,
-            variables: {
-                email: "serra.santos.s@gmail.com",
-                password: "A151102!"
-            }
-        },
-            this.httpOptions
-        ).subscribe(
-            result => {
-                this.userToken = result['data']['login']['token'];
+            const httpOptions = {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + this.loginService.tokenUsuarioLogado
+                })
+            };
 
-                const httpOptions2 = {
-                    headers: new HttpHeaders({
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + this.userToken
-                    })
-                };
+            this.http.post('http://ligapay.tk/',
+                {query: 
+                    `query{
+                        users{
+                        email
+                        }
+                    }`
+                },
+                httpOptions
+            ).subscribe(
+                result => {
+                    console.log(result);
+                }
+            )
+        }
 
-                this.http.post('http://ligapay.tk/',
-                    {query: 
-                        `query{
-                            users{
-                            email
-                            }
-                        }`
-                    },
-                    httpOptions2
-                ).subscribe(
-                    result => {
-                        console.log(result);
-                    }
-                )
-            }
-        )
+        
+
+        
 
         const usuarios: Usuario[] = [
             { id: 1, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },

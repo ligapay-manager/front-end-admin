@@ -53,6 +53,7 @@ import {
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UsuarioPageComponent } from './usuario-page/usuario-page.component';
 import { LoginComponent } from './security/login/login.component';
+import { LoginService } from './security/login/login.service';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { LoginComponent } from './security/login/login.component';
     ReactiveFormsModule
   ],
   providers: [
-    UsuariosService
+    UsuariosService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
