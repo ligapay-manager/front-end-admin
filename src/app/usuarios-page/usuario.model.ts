@@ -1,8 +1,11 @@
 export interface Usuario{
-    id: number
-    nome: string
+    id: string
     email: string
-    nomeTime: string
-    montanteCarteira: number
-    pontuacao: number
+    time: {
+        nome: string,
+        nomeTime: string
+    }
+    carteira: {
+        montanteCarteira: number
+    }
 }

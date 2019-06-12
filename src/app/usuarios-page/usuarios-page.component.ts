@@ -9,7 +9,7 @@ import { UsuariosService } from './usuarios.service';
 })
 export class UsuariosPageComponent implements OnInit {   
 
-  displayedColumns: string[] = ['nome', 'email', 'nomeTime', 'montanteCarteira', 'pontuacao', 'acoes'];
+  displayedColumns: string[] = ['nome', 'email', 'nomeTime', 'montanteCarteira', 'acoes'];
   
   dataSource: Usuario[];
 

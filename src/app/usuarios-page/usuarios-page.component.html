@@ -27,7 +27,7 @@
     <!-- Coluna Nome -->
     <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef><b> Nome </b></th>
-      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.time.nome}} </td>
     </ng-container>
   
     <!-- Coluna Email -->
@@ -39,20 +39,14 @@
     <!-- Coluna Nome do Time  -->
     <ng-container matColumnDef="nomeTime">
       <th mat-header-cell *matHeaderCellDef><b> Nome do Time  </b></th>
-      <td mat-cell *matCellDef="let element"> {{element.nomeTime}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.time.nomeTime}} </td>
     </ng-container>
   
     <!-- Coluna Montante Carteira -->
     <ng-container matColumnDef="montanteCarteira">
       <th mat-header-cell *matHeaderCellDef><b> Montante Carteira </b></th>
-      <td mat-cell *matCellDef="let element"> {{element.montanteCarteira}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.carteira.montanteCarteira}} </td>
     </ng-container>
-
-    <!-- Coluna Pontuação -->
-    <ng-container matColumnDef="pontuacao">
-        <th mat-header-cell *matHeaderCellDef><b> Pontuacao </b></th>
-        <td mat-cell *matCellDef="let element"> {{element.pontuacao}} </td>
-      </ng-container>
 
     <!-- Coluna Ação -->
     <ng-container matColumnDef="acoes">

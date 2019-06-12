@@ -14,8 +14,6 @@ export class UsuariosService {
 
     constructor(private http: HttpClient, private loginService: LoginService) { }
 
-    userToken = "";
-
     listarUsuarios(): Usuario[] {
 
         if(this.loginService.isLogged()){
@@ -23,17 +21,34 @@ export class UsuariosService {
             const httpOptions = {
                 headers: new HttpHeaders({
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + this.loginService.tokenUsuarioLogado
+                    'Authorization': 'Bearer ' + this.loginService.getTokenUsuarioLogado()
                 })
             };
 
-            this.http.post('http://ligapay.tk/',
-                {query: 
-                    `query{
-                        users{
-                        email
-                        }
-                    }`
+            this.http.post(LIGAPAY_API.ligapay_prisma,
+                {
+                    query: 
+                        `query($emailFiltro: String!, $nomeFiltro: String!, $nomeTimeFiltro: String!){
+                            users( where: { email_contains: $emailFiltro 
+                                            team: { 
+                                                cartolaName_contains: $nomeFiltro
+                                                name_contains: $nomeTimeFiltro }}){
+                              id
+                              email
+                              time: team{
+                                nome: cartolaName
+                                nomeTime: name
+                              }
+                              carteira: wallet {
+                                montanteCarteira: amount
+                              }
+                            }
+                          }`,
+                          variables: {
+                              emailFiltro: "",
+                              nomeFiltro: "",
+                              nomeTimeFiltro: ""
+                          }
                 },
                 httpOptions
             ).subscribe(
@@ -48,23 +63,23 @@ export class UsuariosService {
         
 
         const usuarios: Usuario[] = [
-            { id: 1, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 2, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 3, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 4, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 5, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 6, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 7, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 8, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 9, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 10, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 11, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 12, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 13, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 14, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 15, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 16, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
-            { id: 17, nome: 'Vinicius Zorzanelli', email: 'vinicius@gmail.com', nomeTime: 'Arostoles', montanteCarteira: 15.9, pontuacao: 998 },
+            { id: "01", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "02", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "03", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "04", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "05", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "06", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "07", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "08", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "09", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "10", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "11", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "12", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "13", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "14", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "15", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "16", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
+            { id: "17", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
         ];
 
         return usuarios;

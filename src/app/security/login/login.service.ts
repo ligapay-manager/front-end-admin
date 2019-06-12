@@ -10,11 +10,12 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class LoginService {
 
-    tokenUsuarioLogado: string;
-    stringTeste: string = "aaa";
-
     constructor(private http: HttpClient) { }
 
+    getTokenUsuarioLogado(): string {
+        return localStorage.getItem('tokenUsuarioLogadoLigapay');
+    }
+    
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json'
@@ -22,7 +23,7 @@ export class LoginService {
     };
 
     isLogged(): boolean {
-        return this.tokenUsuarioLogado != undefined;
+        return localStorage.getItem('tokenUsuarioLogadoLigapay') != undefined;
     }
 
     login(email: string, senha: string): Observable<any>{
@@ -41,7 +42,7 @@ export class LoginService {
             this.httpOptions
         ).pipe(
             tap(res => {
-                this.tokenUsuarioLogado = res['data']['login']['token'];
+                localStorage.setItem('tokenUsuarioLogadoLigapay', res['data']['login']['token']);
             }));
     }
 
