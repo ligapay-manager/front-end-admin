@@ -14,7 +14,7 @@ export class UsuariosService {
 
     constructor(private http: HttpClient, private loginService: LoginService) { }
 
-    listarUsuarios(): Usuario[] {
+    listarUsuarios(): Observable<Usuario[]> {
 
         if(this.loginService.isLogged()){
 
@@ -25,7 +25,7 @@ export class UsuariosService {
                 })
             };
 
-            this.http.post(LIGAPAY_API.ligapay_prisma,
+            return this.http.post<Usuario[]>(LIGAPAY_API.ligapay_prisma,
                 {
                     query: 
                         `query($emailFiltro: String!, $nomeFiltro: String!, $nomeTimeFiltro: String!){
@@ -51,15 +51,10 @@ export class UsuariosService {
                           }
                 },
                 httpOptions
-            ).subscribe(
-                result => {
-                    console.log(result);
-                }
             )
         }
-
         
-
+/*
         
 
         const usuarios: Usuario[] = [
@@ -82,6 +77,6 @@ export class UsuariosService {
             { id: "17", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
         ];
 
-        return usuarios;
+        return usuarios;*/
     }
 }

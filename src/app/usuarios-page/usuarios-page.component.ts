@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from './usuario.model';
 import { UsuariosService } from './usuarios.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'lpa-usuarios-page',
@@ -16,7 +17,12 @@ export class UsuariosPageComponent implements OnInit {
   constructor(private usuariosService: UsuariosService) {}
 
   ngOnInit() {
-    this.dataSource = this.usuariosService.listarUsuarios();
+    this.usuariosService.listarUsuarios().subscribe(res =>
+    {
+      this.dataSource = res['data']['users'];
+
+      console.log(res['data']['users']);
+    })
   }
 
 }
