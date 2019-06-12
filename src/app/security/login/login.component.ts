@@ -21,13 +21,16 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', [Validators.required,Validators.email]),
       senha: new FormControl('', [Validators.required])
    });
-    //this.router.navigate(['./usuarios']);
   }
 
   login(){
     this.loginService.login(this.formdata.value.email, 
                             this.formdata.value.senha)
-                            .subscribe(data => console.log(data['data']['login']['token']));
+                            .subscribe(data => 
+                              {
+                                this.router.navigate(['./usuarios']);
+                                console.log(data['data']['login']['token']);
+                              })
                                
   }
 

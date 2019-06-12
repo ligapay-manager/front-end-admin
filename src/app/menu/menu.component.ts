@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../security/login/login.service';
 
 @Component({
   selector: 'lpa-menu',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
+
+  logout(){
+    this.loginService.clearTokenUsuarioLogado();
+  }
 
   ngOnInit() {
   }

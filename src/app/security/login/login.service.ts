@@ -16,6 +16,10 @@ export class LoginService {
         return localStorage.getItem('tokenUsuarioLogadoLigapay');
     }
     
+    clearTokenUsuarioLogado() {
+        localStorage.setItem('tokenUsuarioLogadoLigapay', '');
+    }
+    
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json'
@@ -35,8 +39,8 @@ export class LoginService {
                 }
             }`,
             variables: {
-                email: 'serra.santos.s@gmail.com',
-                password: 'A151102!'
+                email: email,
+                password: senha
             }
         },
             this.httpOptions

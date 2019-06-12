@@ -20,7 +20,7 @@
         </mat-error>
       </mat-form-field>
       <div class="button">
-        <button type="submit" mat-button>Login</button>
+        <button type="submit" mat-button [disabled]="formdata.invalid">Login</button>
       </div>
     </form>
   </mat-card-content>
