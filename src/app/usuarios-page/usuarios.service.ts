@@ -14,8 +14,8 @@ export class UsuariosService {
 
     constructor(private http: HttpClient, private loginService: LoginService) { }
 
-    listarUsuarios(): Observable<Usuario[]> {
-
+    listarUsuarios(emailFiltro: string, nomeFiltro:String, nomeTimeFiltro: string): Observable<Usuario[]> {
+        
         if(this.loginService.isLogged()){
 
             const httpOptions = {
@@ -45,9 +45,9 @@ export class UsuariosService {
                             }
                           }`,
                           variables: {
-                              emailFiltro: "",
-                              nomeFiltro: "",
-                              nomeTimeFiltro: ""
+                              emailFiltro: emailFiltro,
+                              nomeFiltro: nomeFiltro,
+                              nomeTimeFiltro: nomeTimeFiltro
                           }
                 },
                 httpOptions

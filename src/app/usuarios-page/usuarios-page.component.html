@@ -7,19 +7,25 @@
   </div>
 
   <div class="mat-elevation-z8" >
-      <div>
-          <mat-form-field>
-            <input matInput placeholder="Nome">
-          </mat-form-field> 
-          
-          <mat-form-field>
-            <input matInput placeholder="Email">
-          </mat-form-field>
+    <div class="mat-elevation-z8" >
+      <form [formGroup]="formFiltro" (ngSubmit) = "buscarUsuarios(formFiltro.value)">
+        <mat-form-field>
+          <input matInput placeholder="Nome" formControlName="nome">
+        </mat-form-field> 
+        
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput placeholder="Nome do Time" formControlName="nomeTime">
+        </mat-form-field>
 
-          <mat-form-field>
-            <input matInput placeholder="Nome do Time">
-          </mat-form-field>
-      </div>
+        <div class="button">
+          <button type="submit" mat-raised-button color="primary" id="submitButton">Buscar</button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">              
