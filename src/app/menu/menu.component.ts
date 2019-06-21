@@ -10,7 +10,7 @@ export class MenuComponent implements OnInit {
 
   constructor(private loginService: LoginService) { }
 
-  logout(){
+  logout() {
     this.loginService.clearTokenUsuarioLogado();
   }
 

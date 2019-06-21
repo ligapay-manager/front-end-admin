@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'lpa-usuario-page',
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class UsuarioPageComponent implements OnInit {
 
-  id:string;
+  id: string;
 
   constructor(private route: ActivatedRoute) { }
 

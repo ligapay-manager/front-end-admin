@@ -12,41 +12,41 @@ export class LoginService {
 
     constructor(private http: HttpClient) { }
 
-    getTokenUsuarioLogado(): string {
-        return localStorage.getItem('tokenUsuarioLogadoLigapay');
-    }
-    
-    clearTokenUsuarioLogado() {
-        localStorage.setItem('tokenUsuarioLogadoLigapay', '');
-    }
-    
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json'
         })
     };
 
-    isLogged(): boolean {
-        return localStorage.getItem('tokenUsuarioLogadoLigapay') != undefined;
+    getTokenUsuarioLogado(): string {
+        return localStorage.getItem('tokenUsuarioLogadoLigapay');
     }
 
-    login(email: string, senha: string): Observable<any>{
+    clearTokenUsuarioLogado() {
+        localStorage.setItem('tokenUsuarioLogadoLigapay', '');
+    }
+
+    isLogged(): boolean {
+        return localStorage.getItem('tokenUsuarioLogadoLigapay') !== undefined;
+    }
+
+    login(email: string, senha: string): Observable<any> {
         return this.http.post(LIGAPAY_API.ligapay_backend, {
-            query: 
+            query:
             `mutation ($email: String!, $password: String!) {
                 login(email: $email, password: $password){
                     token
                 }
             }`,
             variables: {
-                email: email,
+                email,
                 password: senha
             }
         },
             this.httpOptions
         ).pipe(
             tap(res => {
-                localStorage.setItem('tokenUsuarioLogadoLigapay', res['data']['login']['token']);
+                localStorage.setItem('tokenUsuarioLogadoLigapay', res.data.login.token);
             }));
     }
 

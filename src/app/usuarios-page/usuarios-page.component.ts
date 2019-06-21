@@ -9,20 +9,20 @@ import { FormGroup, FormControl } from '@angular/forms';
   templateUrl: './usuarios-page.component.html',
   styleUrls: ['./usuarios-page.component.css']
 })
-export class UsuariosPageComponent implements OnInit {   
+export class UsuariosPageComponent implements OnInit {
 
-  displayedColumns: string[] = ['nome', 'email', 'nomeTime', 'montanteCarteira', 'acoes'];  
+  displayedColumns: string[] = ['nome', 'email', 'nomeTime', 'montanteCarteira', 'acoes'];
   dataSource: Usuario[];
   formFiltro;
 
   constructor(private usuariosService: UsuariosService) {}
 
-  buscarUsuarios(){
-    this.usuariosService.listarUsuarios(this.formFiltro.value.email, 
+  buscarUsuarios() {
+    this.usuariosService.listarUsuarios(this.formFiltro.value.email,
                                         this.formFiltro.value.nome,
                                         this.formFiltro.value.nomeTime).subscribe(res => {
-      this.dataSource = res['data']['users'];
-      console.log(res['data']['users']);
+      this.dataSource = res.data.users;
+      console.log(res.data.users);
     });
   }
 
@@ -33,9 +33,9 @@ export class UsuariosPageComponent implements OnInit {
       nomeTime: new FormControl('')
     });
 
-    this.usuariosService.listarUsuarios("", "", "").subscribe(res => {
-      this.dataSource = res['data']['users'];
-      console.log(res['data']['users']);
+    this.usuariosService.listarUsuarios('', '', '').subscribe(res => {
+      this.dataSource = res.data.users;
+      console.log(res.data.users);
     });
   }
 

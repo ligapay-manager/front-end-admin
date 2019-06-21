@@ -1,6 +1,6 @@
 import { Usuario } from './usuario.model';
 import { LIGAPAY_API } from '../app.api';
-import { LoginService } from '../security/login/login.service'
+import { LoginService } from '../security/login/login.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,23 +14,23 @@ export class UsuariosService {
 
     constructor(private http: HttpClient, private loginService: LoginService) { }
 
-    listarUsuarios(emailFiltro: string, nomeFiltro:String, nomeTimeFiltro: string): Observable<Usuario[]> {
-        
-        if(this.loginService.isLogged()){
+    listarUsuarios(emailFiltro: string, nomeFiltro: string, nomeTimeFiltro: string): Observable<Usuario[]> {
+
+        if (this.loginService.isLogged()) {
 
             const httpOptions = {
                 headers: new HttpHeaders({
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + this.loginService.getTokenUsuarioLogado()
+                    Authorization: 'Bearer ' + this.loginService.getTokenUsuarioLogado()
                 })
             };
 
             return this.http.post<Usuario[]>(LIGAPAY_API.ligapay_prisma,
                 {
-                    query: 
+                    query:
                         `query($emailFiltro: String!, $nomeFiltro: String!, $nomeTimeFiltro: String!){
-                            users( where: { email_contains: $emailFiltro 
-                                            team: { 
+                            users( where: { email_contains: $emailFiltro
+                                            team: {
                                                 cartolaName_contains: $nomeFiltro
                                                 name_contains: $nomeTimeFiltro }}){
                               id
@@ -45,38 +45,13 @@ export class UsuariosService {
                             }
                           }`,
                           variables: {
-                              emailFiltro: emailFiltro,
-                              nomeFiltro: nomeFiltro,
-                              nomeTimeFiltro: nomeTimeFiltro
+                              emailFiltro,
+                              nomeFiltro,
+                              nomeTimeFiltro
                           }
                 },
                 httpOptions
-            )
+            );
         }
-        
-/*
-        
-
-        const usuarios: Usuario[] = [
-            { id: "01", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "02", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "03", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "04", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "05", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "06", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "07", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "08", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "09", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "10", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "11", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "12", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "13", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "14", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "15", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "16", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-            { id: "17", time: {nome: 'Vinicius Zorzanelli', nomeTime: 'Arostoles'}, email: 'vinicius@gmail.com', carteira: {montanteCarteira: 15.9} },
-        ];
-
-        return usuarios;*/
     }
 }
