@@ -38,6 +38,9 @@ export class UsuariosService {
                               time: team{
                                 nome: cartolaName
                                 nomeTime: name
+                                scores (where: { season: { current: true } }) {
+                                  score
+                                }
                               }
                               carteira: wallet {
                                 montanteCarteira: amount

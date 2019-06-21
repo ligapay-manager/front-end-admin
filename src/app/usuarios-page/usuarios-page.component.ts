@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Usuario } from './usuario.model';
-import { UsuariosService } from './usuarios.service';
-import { Observable } from 'rxjs';
-import { FormGroup, FormControl } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {Usuario} from './usuario.model';
+import {UsuariosService} from './usuarios.service';
+import {FormGroup, FormControl} from '@angular/forms';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'lpa-usuarios-page',
@@ -11,18 +11,24 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class UsuariosPageComponent implements OnInit {
 
-  displayedColumns: string[] = ['nome', 'email', 'nomeTime', 'montanteCarteira', 'acoes'];
+  displayedColumns: string[] = ['nome', 'email', 'nomeTime', 'montanteCarteira', 'somaScores', 'acoes'];
   dataSource: Usuario[];
   formFiltro;
 
-  constructor(private usuariosService: UsuariosService) {}
+  constructor(private usuariosService: UsuariosService) {
+  }
+
+  calcularPontuacao(usuario: Usuario) {
+    usuario.time.somaScores = usuario.time.scores.reduce((a, b) => a + b.score, 0);
+    usuario.time.somaScores = +usuario.time.somaScores.toFixed(2);
+  }
 
   buscarUsuarios() {
     this.usuariosService.listarUsuarios(this.formFiltro.value.email,
-                                        this.formFiltro.value.nome,
-                                        this.formFiltro.value.nomeTime).subscribe(res => {
-      this.dataSource = res.data.users;
-      console.log(res.data.users);
+      this.formFiltro.value.nome,
+      this.formFiltro.value.nomeTime).subscribe(res => {
+        res['data']['users'].forEach(this.calcularPontuacao);
+        this.dataSource = res['data']['users'];
     });
   }
 
@@ -33,10 +39,6 @@ export class UsuariosPageComponent implements OnInit {
       nomeTime: new FormControl('')
     });
 
-    this.usuariosService.listarUsuarios('', '', '').subscribe(res => {
-      this.dataSource = res.data.users;
-      console.log(res.data.users);
-    });
+    this.buscarUsuarios();
   }
-
 }

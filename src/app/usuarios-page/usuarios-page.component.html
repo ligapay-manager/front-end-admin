@@ -8,7 +8,7 @@
 
   <div class="mat-elevation-z8" >
     <div class="mat-elevation-z8" >
-      <form [formGroup]="formFiltro" (ngSubmit) = "buscarUsuarios(formFiltro.value)">
+      <form [formGroup]="formFiltro" (ngSubmit) = "buscarUsuarios()">
         <mat-form-field>
           <input matInput placeholder="Nome" formControlName="nome">
         </mat-form-field> 
@@ -54,12 +54,18 @@
       <td mat-cell *matCellDef="let element"> {{element.carteira.montanteCarteira}} </td>
     </ng-container>
 
+    <!-- Coluna Pontuação -->
+    <ng-container matColumnDef="somaScores">
+      <th mat-header-cell *matHeaderCellDef><b> Pontuação </b></th>
+      <td mat-cell *matCellDef="let element"> {{element.time.somaScores}} </td>
+    </ng-container>
+
     <!-- Coluna Ação -->
     <ng-container matColumnDef="acoes">
       <th mat-header-cell *matHeaderCellDef><b> Ações </b></th>
       <td mat-cell *matCellDef="let element"> <button mat-button [routerLink] = "['/usuario', element.id]"><mat-icon>visibility</mat-icon></button></td>
     </ng-container>
-  
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
