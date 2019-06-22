@@ -27,7 +27,8 @@ export class LoginService {
     }
 
     isLogged(): boolean {
-        return localStorage.getItem('tokenUsuarioLogadoLigapay') !== undefined;
+        return localStorage.getItem('tokenUsuarioLogadoLigapay') !== undefined
+          && localStorage.getItem('tokenUsuarioLogadoLigapay') !== '';
     }
 
     login(email: string, senha: string): Observable<any> {
@@ -46,7 +47,12 @@ export class LoginService {
             this.httpOptions
         ).pipe(
             tap(res => {
+              if (res.data !== null) {
                 localStorage.setItem('tokenUsuarioLogadoLigapay', res.data.login.token);
+              } else {
+                this.clearTokenUsuarioLogado();
+                console.log('senha ou email errado');
+              }
             }));
     }
 

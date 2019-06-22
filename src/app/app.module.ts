@@ -40,7 +40,7 @@ import {
   MatSelectModule,
   MatSidenavModule,
   MatSliderModule,
-  MatSlideToggleModule,
+  MatSlideToggleModule, MatSnackBar,
   MatSnackBarModule,
   MatSortModule,
   MatStepperModule,
@@ -54,6 +54,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UsuarioPageComponent } from './usuario-page/usuario-page.component';
 import { LoginComponent } from './security/login/login.component';
 import { LoginService } from './security/login/login.service';
+import { NotificationComponent } from './commons/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -61,8 +62,10 @@ import { LoginService } from './security/login/login.service';
     UsuariosPageComponent,
     MenuComponent,
     UsuarioPageComponent,
-    LoginComponent
+    LoginComponent,
+    NotificationComponent
   ],
+  entryComponents: [NotificationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -75,6 +78,7 @@ import { LoginService } from './security/login/login.service';
     MatGridListModule,
     MatSortModule,
     MatCardModule,
+    MatSnackBarModule,
     MatIconModule,
     MatInputModule,
     BrowserAnimationsModule,
