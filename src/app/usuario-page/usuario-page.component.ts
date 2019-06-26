@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {UsuarioService} from './usuario.service';
+import {Usuario} from '../usuarios-page/usuario.model';
 
 @Component({
   selector: 'lpa-usuario-page',
@@ -8,14 +10,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UsuarioPageComponent implements OnInit {
 
-  id: string;
+  usuarioId: string;
+  usuario: Usuario;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.id = params.get('id');
-      console.log(params.get('id'));
+      this.usuarioId = params.get('id');
+    });
+    this.usuarioService.getUsuario(this.usuarioId).subscribe(res => {
+      this.usuario = res['data']['users'][0];
+      console.log(this.usuario);
     });
   }
 

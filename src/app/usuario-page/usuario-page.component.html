@@ -9,15 +9,15 @@
   <div class="mat-elevation-z8" >
     <form style="text-align: center;">
       <mat-form-field>
-        <input matInput placeholder="Nome" value="Vinicius Zorzanelli" disabled>
+        <input matInput placeholder="Nome" [(ngModel)]="usuario.time.nome" [ngModelOptions]="{standalone: true}" disabled>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Email" value="vinizorza@hotmail.com" disabled>
+        <input matInput placeholder="Email" [(ngModel)]="usuario.email" [ngModelOptions]="{standalone: true}" disabled>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Time" value="Rolangarroz" disabled>
+        <input matInput placeholder="Time" [(ngModel)]="usuario.time.nomeTime" [ngModelOptions]="{standalone: true}" disabled>
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Pontuação" value="817" disabled>
