@@ -20,36 +20,26 @@
         <input matInput placeholder="Time" [(ngModel)]="usuario.time.nomeTime" [ngModelOptions]="{standalone: true}" disabled>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Pontuação" value="817" disabled>
+        <input matInput placeholder="Pontuação"  [(ngModel)]="usuario.time.somaScores" [ngModelOptions]="{standalone: true}" disabled>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Montante Carteira" value="R$89" disabled>
+        <input matInput placeholder="Montante Carteira" [(ngModel)]="usuario.carteira.montanteCarteira" [ngModelOptions]="{standalone: true}" disabled>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Ligas inscrito</mat-label>
+        <mat-label>Montante Recebido</mat-label>
         <select matNativeControl multiple disabled>
-          <option value="amozonas">Amazonas</option>
-          <option value="dwdwd">Amsterda</option>
-          <option value="saaewfb">Swas</option>
-          <option value="saab">Sebers</option>
-          <option value="saab">Opela</option>
-          <option value="saab">Ametulo</option>
-          <option value="saab">Zerba</option>
+          <option value="amozonas"></option>
+          <option value="dwdwd"></option>
         </select>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Ligas administrando</mat-label>
+        <mat-label>Montante Enviado</mat-label>
         <select matNativeControl multiple disabled>
-          <option value="amozonas">Amazonas</option>
-          <option value="dwdwd">Amsterda</option>
-          <option value="saaewfb">Swas</option>
-          <option value="saab">Sebers</option>
-          <option value="saab">Opela</option>
-          <option value="saab">Ametulo</option>
-          <option value="saab">Zerba</option>
+          <option value="amozonas"></option>
+          <option value="dwdwd"></option>
         </select>
       </mat-form-field>
     </form>

@@ -55,6 +55,7 @@ import { UsuarioPageComponent } from './usuario-page/usuario-page.component';
 import { LoginComponent } from './security/login/login.component';
 import { LoginService } from './security/login/login.service';
 import { NotificationComponent } from './commons/notification/notification.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { NotificationComponent } from './commons/notification/notification.compo
     MenuComponent,
     UsuarioPageComponent,
     LoginComponent,
-    NotificationComponent
+    NotificationComponent,
+    TransactionComponent
   ],
   entryComponents: [NotificationComponent],
   imports: [
