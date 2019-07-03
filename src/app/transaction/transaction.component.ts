@@ -28,6 +28,7 @@ export class TransactionComponent implements OnInit {
 
   ngOnInit() {
     this.transacaoService.listarTransacoes().subscribe(res => {
+      console.log(res['data']['transactions']);
       this.dataSource = res['data']['transactions'];
     });
   }
