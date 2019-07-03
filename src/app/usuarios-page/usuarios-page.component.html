@@ -51,7 +51,7 @@
     <!-- Coluna Montante Carteira -->
     <ng-container matColumnDef="montanteCarteira">
       <th mat-header-cell *matHeaderCellDef><b> Montante Carteira </b></th>
-      <td mat-cell *matCellDef="let element"> {{element.carteira.montanteCarteira}} </td>
+      <td mat-cell *matCellDef="let element">R$ {{element.carteira.montanteCarteira/100}} </td>
     </ng-container>
 
     <!-- Coluna Pontuação -->
