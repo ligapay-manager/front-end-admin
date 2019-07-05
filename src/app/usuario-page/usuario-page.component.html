@@ -27,19 +27,17 @@
         <input matInput placeholder="Montante Carteira" [(ngModel)]="usuario.carteira.montanteCarteira" [ngModelOptions]="{standalone: true}" disabled>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="montante">
         <mat-label>Montante Recebido</mat-label>
         <select matNativeControl multiple disabled>
-          <option value="amozonas"></option>
-          <option value="dwdwd"></option>
+          <option *ngFor="let transacao of transacoesDestino" [value]="transacao.id">R${{transacao.amount/100}} - {{transacao.origin.user.team.cartolaName}}</option>
         </select>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="montante">
         <mat-label>Montante Enviado</mat-label>
         <select matNativeControl multiple disabled>
-          <option value="amozonas"></option>
-          <option value="dwdwd"></option>
+          <option *ngFor="let transacao of transacoesOrigem" [value]="transacao.id">R${{transacao.amount/100}} - {{transacao.destination.user.team.cartolaName}}</option>
         </select>
       </mat-form-field>
     </form>

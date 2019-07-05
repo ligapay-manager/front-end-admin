@@ -56,6 +56,7 @@ import { LoginComponent } from './security/login/login.component';
 import { LoginService } from './security/login/login.service';
 import { NotificationComponent } from './commons/notification/notification.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { TransactionComponent } from './transaction/transaction.component';
     MatPaginatorModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [
     UsuariosService,

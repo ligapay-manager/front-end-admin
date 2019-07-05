@@ -53,4 +53,84 @@ export class TransacaoService {
       );
     }
   }
+
+  getTransacoesByOrigin(origem: string): Observable<Transaction[]> {
+
+    if (this.loginService.isLogged()) {
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + this.loginService.getTokenUsuarioLogado()
+        })
+      };
+
+      return this.http.post<Transaction[]>(LIGAPAY_API.ligapay_prisma,
+        {
+          query:
+            `query{
+              transactions( where: {origin: {user: {id: "` + origem + `"}}} ){
+                createdAt
+                amount
+                destination{
+                  user{
+                    team{
+                      cartolaName
+                    }
+                  }
+                }
+                origin{
+                  user{
+                    team{
+                      cartolaName
+                    }
+                  }
+                }
+              }
+            }`
+        },
+        httpOptions
+      );
+    }
+  }
+
+  getTransacoesByDestination(destino: string): Observable<Transaction[]> {
+
+    if (this.loginService.isLogged()) {
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + this.loginService.getTokenUsuarioLogado()
+        })
+      };
+
+      return this.http.post<Transaction[]>(LIGAPAY_API.ligapay_prisma,
+        {
+          query:
+            `query{
+              transactions( where: {destination: {user: {id: "` + destino + `"}}} ){
+                createdAt
+                amount
+                destination{
+                  user{
+                    team{
+                      cartolaName
+                    }
+                  }
+                }
+                origin{
+                  user{
+                    team{
+                      cartolaName
+                    }
+                  }
+                }
+              }
+            }`
+        },
+        httpOptions
+      );
+    }
+  }
 }
